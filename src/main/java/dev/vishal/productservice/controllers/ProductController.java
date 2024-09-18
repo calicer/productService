@@ -23,8 +23,10 @@ public class ProductController {
     }
 
     @GetMapping()
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> list = productService.getAllProducts();
+        ResponseEntity<List<Product>> responseEntity = new ResponseEntity<>(list, HttpStatus.OK);
+        return responseEntity;
     }
 
     @GetMapping("/{productId}")

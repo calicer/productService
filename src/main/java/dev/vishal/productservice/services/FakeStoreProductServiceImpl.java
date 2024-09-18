@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FakeStoreProductServiceImpl implements ProductService{
@@ -22,7 +25,24 @@ public class FakeStoreProductServiceImpl implements ProductService{
     @Override
     public List<Product> getAllProducts() {
 
-       return null;
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<ProductDTO[]> responseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products", ProductDTO[].class);
+
+        List<Product> list = new ArrayList<>();
+        for(ProductDTO productDTO : Objects.requireNonNull(responseEntity.getBody())) {
+            Product product = new Product();
+            //product.setId(productDTO.getId());
+            product.setDescription(productDTO.getDescription());
+            product.setImageUrl(productDTO.getImage());
+            product.setTitle(productDTO.getTitle());
+            product.setPrice(productDTO.getPrice());
+            Category category = new Category();
+            category.setName(productDTO.getCategory());
+            product.setCategory(category);
+            list.add(product);
+        }
+
+       return list;
     }
 
     @Override
