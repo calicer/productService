@@ -4,6 +4,7 @@ import dev.vishal.productservice.dtos.ProductDTO;
 import dev.vishal.productservice.models.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
 
@@ -13,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getSingleProduct(Long productId) {
+    public Optional<Product> getSingleProduct(Long productId) {
         return null;
     }
 
@@ -31,5 +32,10 @@ public class ProductServiceImpl implements ProductService {
     public boolean deleteProduct(Long productId) {
         return false;
 
+    }
+
+    @Override
+    public Product replaceProduct(Long productId, ProductDTO product) {
+        return null;
     }
 }
