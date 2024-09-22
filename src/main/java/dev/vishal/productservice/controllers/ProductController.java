@@ -5,8 +5,10 @@ import dev.vishal.productservice.dtos.ProductDTO;
 import dev.vishal.productservice.exceptions.NotFoundException;
 import dev.vishal.productservice.models.Category;
 import dev.vishal.productservice.models.Product;
+import dev.vishal.productservice.repositories.ProductRepository;
 import dev.vishal.productservice.services.FakeStoreProductServiceImpl;
 import dev.vishal.productservice.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 /*
+Controllers work on DTOs
+DTOs are for external communication
 Controller duty to convert models to DTO
 Services can return DTO as the same method can be called at different places
  */

@@ -28,29 +28,42 @@ public class FakeStoreClient {
 
     public List<FakeStoreProductDTO> getAllProducts(){
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductDTO[]> responseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products", FakeStoreProductDTO[].class);
+        ResponseEntity<FakeStoreProductDTO[]> responseEntity = restTemplate
+                .getForEntity("https://fakestoreapi.com/products", FakeStoreProductDTO[].class);
 
         return Arrays.asList(responseEntity.getBody());
     }
 
-    Optional<FakeStoreProductDTO> getSingleProduct(Long productId){
+    public Optional<FakeStoreProductDTO> getSingleProduct(Long productId){
         return null;
     }
 
-    FakeStoreProductDTO addNewProduct(ProductDTO product){
+    public FakeStoreProductDTO addNewProduct(ProductDTO product){
         return null;
     }
 
-    FakeStoreProductDTO updateProduct(Long productId, Product product){
+    public FakeStoreProductDTO updateProduct(Long productId, Product product){
         return null;
     }
 
-    boolean deleteProduct(Long productId){
+    public boolean deleteProduct(Long productId){
         return false;
     }
 
-    FakeStoreProductDTO replaceProduct(Long productId, ProductDTO product){
+    public FakeStoreProductDTO replaceProduct(Long productId, ProductDTO product){
         return null;
+    }
+
+    public String[] getAllCategories(){
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<String[]> responseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products/categories", String[].class);
+        return responseEntity.getBody();
+    }
+
+    public List<FakeStoreProductDTO> getProductInCategory(String category){
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDTO[]> responseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products/category/" + category, FakeStoreProductDTO[].class);
+        return Arrays.asList(responseEntity.getBody());
     }
 
 }

@@ -6,6 +6,9 @@ import dev.vishal.productservice.models.Product;
 import java.util.List;
 import java.util.Optional;
 
+/*
+Services work on models
+ */
 public interface ProductService {
     List<Product> getAllProducts();
 
